@@ -21,7 +21,8 @@ int Stack::pop() {
     if (this->is_not_empty())
         return this->value[--(this->next)];
     else
-        throw std::logic_error{"Can't take something from the stack if it's empty"};
+        throw std::logic_error{
+            "Can't take something from the stack if it's empty"};
 }
 
 int Stack::peek() {

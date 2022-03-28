@@ -1,10 +1,11 @@
-#include "./stack.hpp"
 #include <iostream>
+#include "./stack.hpp"
 
 /*
     Tested with g++ (GCC) 11.2.0 on x86-64 Linux
     using this command:
-    g++ -std=c++17 -Wall -Wextra -Werror -pedantic -pedantic-errors ./main.cpp ./stack.cpp
+    g++ -std=c++17 -Wall -Wextra -Werror -pedantic -pedantic-errors ./main.cpp
+   ./stack.cpp
 */
 
 int main() {
