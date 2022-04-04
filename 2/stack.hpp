@@ -18,6 +18,6 @@ class Stack {
 
    private:
     int value[maxSize];  // Feld zur Aufnahme der Datenelemente
-    int next;                // Stapelzeiger
-    int capacity;            // maximale Elementzahl
+    int next;            // Stapelzeiger
+    int capacity;        // maximale Elementzahl
 };
