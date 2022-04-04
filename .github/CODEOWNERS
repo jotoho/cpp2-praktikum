@@ -1,0 +1,11 @@
+# This file lists mandatory reviewers for parts of the repository
+
+# Repository management, documentation, legal & CI
+/.github/* @jotoho
+/.clang-format @jotoho
+/LICENSE* @jotoho
+*.md @jotoho
+
+# Scripts of all kinds
+*.sh @jotoho
+*.bash @jotoho
