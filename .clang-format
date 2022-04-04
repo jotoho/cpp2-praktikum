@@ -1,5 +1,5 @@
 ---
-Language:        Cpp
-BasedOnStyle:  Chromium
+Language: Cpp
+BasedOnStyle: Chromium
 IndentWidth: 4
 TabWidth: 4
