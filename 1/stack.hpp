@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-const int N_MAX_STACK = 1000;  // maximale Stapelgröße
+#include <cstddef>
 
 class Stack {
    public:
@@ -13,11 +13,11 @@ class Stack {
     bool is_empty();       // Stapel leer
     bool is_not_empty();   // Stapel nicht leer
 
-    // This should be here
-    static const auto maxSize = N_MAX_STACK;
+    // maximale Stapelgröße
+    static constexpr std::size_t maxSize = 1000;
 
    private:
-    int value[N_MAX_STACK];  // Feld zur Aufnahme der Datenelemente
+    int value[maxSize];  // Feld zur Aufnahme der Datenelemente
     int next;                // Stapelzeiger
     int capacity;            // maximale Elementzahl
 };
