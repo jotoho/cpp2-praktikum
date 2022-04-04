@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 const int N_MAX_STACK = 1000;  // maximale Stapelgröße
 
 class Stack {
