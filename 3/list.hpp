@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Repository: https://github.com/jotoho/cpp2-praktikum
 struct Liste {
     struct Element {
         int wert;
