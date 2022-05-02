@@ -33,4 +33,7 @@ struct Liste {
     int remove_last();
 
     int get(const std::size_t index) const;
+
+    int& operator[](const std::size_t index);
+    const int& operator[](const std::size_t index) const;
 };

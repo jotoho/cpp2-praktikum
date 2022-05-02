@@ -76,17 +76,26 @@ int Liste::remove_last() {
     return wert;
 }
 
-int Liste::get(const std::size_t index) const {
+int& Liste::operator[](const std::size_t index) {
     if (this->head == nullptr)
         throw std::out_of_range{"Tried to access element of empty list"};
 
-    Liste::Element *currentElement = this->head;
+    Liste::Element* currentElement = this->head;
 
-    for (std::size_t currentElementIndex = 0; currentElementIndex < index; currentElementIndex++)
+    for (std::size_t currentElementIndex = 0; currentElementIndex < index;
+         currentElementIndex++)
         if (currentElement->next != nullptr)
             currentElement = currentElement->next;
         else
             throw std::out_of_range{"Tried to access element not inside list"};
 
     return currentElement->wert;
+}
+
+const int& Liste::operator[](const std::size_t index) const {
+    return (*this)[index];
+}
+
+int Liste::get(const std::size_t index) const {
+    return (*this)[index];
 }
