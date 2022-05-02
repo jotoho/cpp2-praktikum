@@ -22,4 +22,10 @@ struct Liste {
     void add(int wert);
     void clear();
     bool contains(int wert);
+
+    void add_first(int wert);
+    void add_last(int wert);
+
+    int remove_first();
+    int remove_last();
 };

@@ -2,15 +2,28 @@
 // Repository: https://github.com/jotoho/cpp2-praktikum
 #include "./list.hpp"
 
-// Voll moppelkotze - sollte append heißen
 void Liste::add(int wert) {
-    auto oldtail = tail;
-    tail =
-        new Liste::Element(wert, tail, static_cast<Liste::Element*>(nullptr));
-    if (oldtail != nullptr)
-        oldtail->next = tail;
+    this->add_last(wert);
+}
+
+void Liste::add_first(int wert) {
+    auto oldhead = this->head;
+    this->head = new Liste::Element(wert, static_cast<Liste::Element*>(nullptr),
+                                    oldhead);
+    if (oldhead != nullptr)
+        oldhead->prev = this->head;
     else
-        head = tail;
+        this->tail = this->head;
+}
+
+void Liste::add_last(int wert) {
+    auto oldtail = this->tail;
+    this->tail = new Liste::Element(wert, this->tail,
+                                    static_cast<Liste::Element*>(nullptr));
+    if (oldtail != nullptr)
+        oldtail->next = this->tail;
+    else
+        this->head = this->tail;
 }
 
 void Liste::clear() {
