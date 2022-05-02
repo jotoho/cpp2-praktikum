@@ -75,3 +75,18 @@ int Liste::remove_last() {
     delete oldtail;
     return wert;
 }
+
+int Liste::get(const std::size_t index) const {
+    if (this->head == nullptr)
+        throw std::out_of_range{"Tried to access element of empty list"};
+
+    Liste::Element *currentElement = this->head;
+
+    for (std::size_t currentElementIndex = 0; currentElementIndex < index; currentElementIndex++)
+        if (currentElement->next != nullptr)
+            currentElement = currentElement->next;
+        else
+            throw std::out_of_range{"Tried to access element not inside list"};
+
+    return currentElement->wert;
+}
