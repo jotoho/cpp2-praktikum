@@ -20,7 +20,7 @@ jobs:
       - uses: dessant/lock-threads@v3.0.0
         with:
           github-token: ${{ github.token }}
-          issue-inactive-days: '60'
+          issue-inactive-days: '30'
           exclude-issue-created-before: ''
           exclude-issue-created-after: ''
           exclude-issue-created-between: ''
@@ -34,7 +34,7 @@ jobs:
           remove-issue-labels: ''
           issue-comment: ''
           issue-lock-reason: 'resolved'
-          pr-inactive-days: '60'
+          pr-inactive-days: '30'
           exclude-pr-created-before: ''
           exclude-pr-created-after: ''
           exclude-pr-created-between: ''
