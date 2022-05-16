@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Repository: https://github.com/jotoho/cpp2-praktikum
 #ifndef INCLUDE_GUARD_SPIELER_HPP
 #define INCLUDE_GUARD_SPIELER_HPP
 #include "Spiel.hpp"

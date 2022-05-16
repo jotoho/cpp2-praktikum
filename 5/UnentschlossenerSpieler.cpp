@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Repository: https://github.com/jotoho/cpp2-praktikum
 #ifndef INCLUDE_GUARD_UNENTSCHLOSSENERSPIELER_CPP
 #define INCLUDE_GUARD_UNENTSCHLOSSENERSPIELER_CPP
 #include "UnentschlossenerSpieler.hpp"
