@@ -1,7 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Repository: https://github.com/jotoho/cpp2-praktikum
-// Individual work for assignment 4, based on shared group work of commit:
-// https://github.com/jotoho/cpp2-praktikum/commit/92ffbeacb68b05d2e79185959109fa8dfe0b3ffe
 
 #include <ctime>
 #include <iostream>
@@ -9,7 +7,7 @@
 #include "./stack.hpp"
 
 void testAddAndSearch() {
-    Liste list{};
+    Liste<int> list{};
 
     list.add(42);
     if (list.contains(42))
@@ -21,7 +19,7 @@ void testAddAndSearch() {
 }
 
 void testDeletingOnEmptyList() {
-    Liste list{};
+    Liste<int> list{};
     try {
         list.remove_first();
         std::cout << "Error: Removing from empty list didn't throw\n";
@@ -33,7 +31,7 @@ void testDeletingOnEmptyList() {
 }
 
 void testAddingAndDeleting() {
-    Liste list{};
+    Liste<int> list{};
 
     if (list.size() != 0) {
         std::cout << "Error: New list already started with elements?\n";
@@ -57,7 +55,7 @@ void testAddingAndDeleting() {
 }
 
 void testClearing() {
-    Liste list{};
+    Liste<int> list{};
     for (std::size_t numElementsLeftToAdd = 16; numElementsLeftToAdd > 0;
          numElementsLeftToAdd--)
         list.add(std::rand());
@@ -71,7 +69,7 @@ void testClearing() {
 }
 
 void testIndexedAccess() {
-    Liste list{};
+    Liste<int> list{};
 
     for (const int toAdd :
          {std::rand(), std::rand(), 42, std::rand(), std::rand(), std::rand()})

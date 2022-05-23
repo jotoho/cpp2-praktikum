@@ -1,15 +1,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Repository: https://github.com/jotoho/cpp2-praktikum
-// Individual work for assignment 4, based on shared group work of commit:
-// https://github.com/jotoho/cpp2-praktikum/commit/92ffbeacb68b05d2e79185959109fa8dfe0b3ffe
 
 #ifndef INCLUDE_GUARD_STACK_HPP
 #define INCLUDE_GUARD_STACK_HPP
 
 #include "list.hpp"
 
+template <typename T>
 class Stack {
-    Liste underlyingList{};
+    Liste<T> underlyingList{};
 
    public:
     Stack() = default;
@@ -17,13 +16,33 @@ class Stack {
     Stack& operator=(const Stack& other) = delete;
 
     // add new item to the top of the stack
-    void push(const int value);
+    void push(const T value);
     // Remove and return item at top of stack
-    int pop();
+    T pop();
     // Deletes all entries
     void clear();
     // Get number of stored items
     std::size_t size();
 };
+
+template <typename T>
+void Stack<T>::push(const T value) {
+    this->underlyingList.add_last(value);
+}
+
+template <typename T>
+T Stack<T>::pop() {
+    return this->underlyingList.remove_last();
+}
+
+template <typename T>
+void Stack<T>::clear() {
+    this->underlyingList.clear();
+}
+
+template <typename T>
+std::size_t Stack<T>::size() {
+    return this->underlyingList.size();
+}
 
 #endif  // INCLUDE_GUARD_STACK_HPP
