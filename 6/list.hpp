@@ -24,150 +24,112 @@ struct Liste {
     T& getRefFromIndex(std::size_t index) const;
 
    public:
-    Liste();
-    ~Liste();
     Liste(const Liste& other) = delete;
     Liste& operator=(const Liste& other) = delete;
 
-    void add(T wert);
-    void clear();
-    bool contains(T wert) const;
+    void add(T wert) { this->add_last(wert); }
 
-    std::size_t size() const;
-
-    void add_first(T wert);
-    void add_last(T wert);
-
-    T remove_first();
-    T remove_last();
-
-    T get(const std::size_t index) const;
-
-    T& operator[](const std::size_t index);
-    const T& operator[](const std::size_t index) const;
-};
-
-template <typename T>
-void Liste<T>::add(T wert) {
-    this->add_last(wert);
-}
-
-template <typename T>
-void Liste<T>::add_first(T wert) {
-    auto oldhead = this->head;
-    this->head = new Liste::Element(wert, static_cast<Liste::Element*>(nullptr),
-                                    oldhead);
-    if (oldhead != nullptr)
-        oldhead->prev = this->head;
-    else
-        this->tail = this->head;
-}
-
-template <typename T>
-void Liste<T>::add_last(T wert) {
-    auto oldtail = this->tail;
-    this->tail = new Liste::Element(wert, this->tail,
-                                    static_cast<Liste::Element*>(nullptr));
-    if (oldtail != nullptr)
-        oldtail->next = this->tail;
-    else
-        this->head = this->tail;
-}
-
-template <typename T>
-void Liste<T>::clear() {
-    while (head != nullptr) {
-        auto oldhead = head;
-        head = head->next;
-        delete oldhead;
+    void add_first(T wert) {
+        auto oldhead = this->head;
+        this->head = new Liste::Element(
+            wert, static_cast<Liste::Element*>(nullptr), oldhead);
+        if (oldhead != nullptr)
+            oldhead->prev = this->head;
+        else
+            this->tail = this->head;
     }
-    tail = nullptr;
-}
 
-template <typename T>
-bool Liste<T>::contains(T wert) const {
-    auto currentElement = head;
-    while (head != nullptr)
-        if (currentElement->wert == wert)
-            return true;
+    void add_last(T wert) {
+        auto oldtail = this->tail;
+        this->tail = new Liste::Element(wert, this->tail,
+                                        static_cast<Liste::Element*>(nullptr));
+        if (oldtail != nullptr)
+            oldtail->next = this->tail;
         else
-            currentElement = currentElement->next;
-    return false;
-}
+            this->head = this->tail;
+    }
 
-template <typename T>
-Liste<T>::Liste() {}
+    void clear() {
+        while (head != nullptr) {
+            auto oldhead = head;
+            head = head->next;
+            delete oldhead;
+        }
+        tail = nullptr;
+    }
 
-template <typename T>
-Liste<T>::~Liste() {
-    this->clear();
-}
+    bool contains(T wert) const {
+        auto currentElement = head;
+        while (head != nullptr)
+            if (currentElement->wert == wert)
+                return true;
+            else
+                currentElement = currentElement->next;
+        return false;
+    }
 
-template <typename T>
-T Liste<T>::remove_first() {
-    if (this->head == nullptr)
-        throw std::logic_error{"Can't remove first element from empty list"};
+    Liste() = default;
 
-    const T wert = this->head->wert;
-    Liste::Element* const oldhead = this->head;
-    this->head = this->head->next;
-    this->head->prev = nullptr;
-    delete oldhead;
-    return wert;
-}
+    ~Liste() { this->clear(); }
 
-template <typename T>
-T Liste<T>::remove_last() {
-    if (this->head == nullptr)
-        throw std::logic_error{"Can't remove last element from empty list"};
+    T remove_first() {
+        if (this->head == nullptr)
+            throw std::logic_error{
+                "Can't remove first element from empty list"};
 
-    const T wert = this->tail->wert;
-    Liste::Element* const oldtail = this->tail;
-    this->tail = this->tail->prev;
-    this->tail->next = nullptr;
-    delete oldtail;
-    return wert;
-}
+        const T wert = this->head->wert;
+        Liste::Element* const oldhead = this->head;
+        this->head = this->head->next;
+        this->head->prev = nullptr;
+        delete oldhead;
+        return wert;
+    }
 
-template <typename T>
-T& Liste<T>::getRefFromIndex(std::size_t index) const {
-    if (this->head == nullptr)
-        throw std::out_of_range{"Tried to access element of empty list"};
+    T remove_last() {
+        if (this->head == nullptr)
+            throw std::logic_error{"Can't remove last element from empty list"};
 
-    Liste::Element* currentElement = this->head;
+        const T wert = this->tail->wert;
+        Liste::Element* const oldtail = this->tail;
+        this->tail = this->tail->prev;
+        this->tail->next = nullptr;
+        delete oldtail;
+        return wert;
+    }
 
-    for (std::size_t currentElementIndex = 0; currentElementIndex < index;
-         currentElementIndex++)
-        if (currentElement->next != nullptr)
-            currentElement = currentElement->next;
-        else
-            throw std::out_of_range{"Tried to access element not inside list"};
+    T& getRefFromIndex(std::size_t index) const {
+        if (this->head == nullptr)
+            throw std::out_of_range{"Tried to access element of empty list"};
 
-    return currentElement->wert;
-}
+        Liste::Element* currentElement = this->head;
 
-template <typename T>
-T& Liste<T>::operator[](const std::size_t index) {
-    return getRefFromIndex(index);
-}
+        for (std::size_t currentElementIndex = 0; currentElementIndex < index;
+             currentElementIndex++)
+            if (currentElement->next != nullptr)
+                currentElement = currentElement->next;
+            else
+                throw std::out_of_range{
+                    "Tried to access element not inside list"};
 
-template <typename T>
-const T& Liste<T>::operator[](const std::size_t index) const {
-    return getRefFromIndex(index);
-}
+        return currentElement->wert;
+    }
 
-template <typename T>
-T Liste<T>::get(const std::size_t index) const {
-    return getRefFromIndex(index);
-}
+    T& operator[](const std::size_t index) { return getRefFromIndex(index); }
 
-template <typename T>
-std::size_t Liste<T>::size() const {
-    std::size_t elementsCounted = 0;
-    for (Liste::Element* countingPointer = this->head;
-         countingPointer != nullptr; countingPointer = countingPointer->next)
-        elementsCounted++;
-    return elementsCounted;
-}
+    const T& operator[](const std::size_t index) const {
+        return getRefFromIndex(index);
+    }
+
+    T get(const std::size_t index) const { return getRefFromIndex(index); }
+
+    std::size_t size() const {
+        std::size_t elementsCounted = 0;
+        for (Liste::Element* countingPointer = this->head;
+             countingPointer != nullptr;
+             countingPointer = countingPointer->next)
+            elementsCounted++;
+        return elementsCounted;
+    }
+};
 
 #endif  // INCLUDE_GUARD_LIST_HPP

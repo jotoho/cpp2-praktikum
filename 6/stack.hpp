@@ -15,34 +15,13 @@ class Stack {
     Stack(const Stack& other) = delete;
     Stack& operator=(const Stack& other) = delete;
 
-    // add new item to the top of the stack
-    void push(const T value);
-    // Remove and return item at top of stack
-    T pop();
-    // Deletes all entries
-    void clear();
-    // Get number of stored items
-    std::size_t size();
+    void push(const T value) { this->underlyingList.add_last(value); }
+
+    T pop() { return this->underlyingList.remove_last(); }
+
+    void clear() { this->underlyingList.clear(); }
+
+    std::size_t size() { return this->underlyingList.size(); }
 };
-
-template <typename T>
-void Stack<T>::push(const T value) {
-    this->underlyingList.add_last(value);
-}
-
-template <typename T>
-T Stack<T>::pop() {
-    return this->underlyingList.remove_last();
-}
-
-template <typename T>
-void Stack<T>::clear() {
-    this->underlyingList.clear();
-}
-
-template <typename T>
-std::size_t Stack<T>::size() {
-    return this->underlyingList.size();
-}
 
 #endif  // INCLUDE_GUARD_STACK_HPP
