@@ -3,8 +3,7 @@
 #include <stdexcept>
 
 template <typename T>
-requires std::is_integral_v<T> && std::is_signed_v<T>
-class Fraction {
+requires std::is_integral_v<T>&& std::is_signed_v<T> class Fraction {
    private:
     T nominator;
     T denominator;
@@ -46,7 +45,8 @@ class Fraction {
     }
 
     Fraction operator+(const Fraction& other) const {
-        return Fraction{this->nominator+other.nominator, this->denominator+other.denominator};
+        return Fraction{this->nominator + other.nominator,
+                        this->denominator + other.denominator};
     }
 
     Fraction operator-(const Fraction& other) const {
@@ -54,22 +54,20 @@ class Fraction {
     }
 
     Fraction operator*(const Fraction& other) const {
-        return Fraction{this->nominator * other.nominator, this->denominator * other.denominator};
+        return Fraction{this->nominator * other.nominator,
+                        this->denominator * other.denominator};
     }
 
     Fraction operator/(const Fraction& other) const {
         return (*this) * (Fraction{other.denominator, other.nominator});
     }
 
-    T getNominator() const {
-        return this->nominator;
-    }
+    T getNominator() const { return this->nominator; }
 
-    T getDenominator() const {
-        return this->denominator;
-    }
+    T getDenominator() const { return this->denominator; }
 
     double toDouble() const {
-        return static_cast<double>(this->nominator) / static_cast<double>(this->denominator);
+        return static_cast<double>(this->nominator) /
+               static_cast<double>(this->denominator);
     }
 };
