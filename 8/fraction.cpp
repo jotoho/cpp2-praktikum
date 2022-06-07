@@ -6,7 +6,8 @@
 #include <stdexcept>
 
 template <typename T>
-requires std::is_integral_v<T>&& std::is_signed_v<T> class Fraction {
+requires std::is_integral_v<T> && std::is_signed_v<T>
+class Fraction {
    private:
     T nominator;
     T denominator;
