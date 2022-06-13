@@ -49,8 +49,10 @@ class Fraction {
     }
 
     Fraction operator+(const Fraction& other) const {
-        return Fraction{this->nominator + other.nominator,
-                        this->denominator + other.denominator};
+        const T nominator = this->nominator * other.denominator +
+                            other.nominator * this->denominator;
+        const T denominator = this->denominator * other.denominator;
+        return Fraction{nominator, denominator};
     }
 
     Fraction operator-(const Fraction& other) const {
