@@ -23,6 +23,7 @@ class TestFractions {
         out << "{5,5}: " << Fraction{5, 5} << '\n';
         out << "{10,2}: " << Fraction{10, 2} << '\n';
         out << "{15,16}: " << Fraction{15, 16} << '\n';
+        out << "{0,1}: " << Fraction{0, 1} << '\n';
 
         {
             bool caughtIt = false;
