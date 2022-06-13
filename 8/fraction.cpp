@@ -13,7 +13,7 @@ class Fraction {
     T denominator;
 
     constexpr static T ggT(const T a, const T b) {
-        if (a == 0 && a == 0)
+        if (a == 0 && b == 0)
             return 0;
         else if (b == 0)
             return std::abs(a);
@@ -49,8 +49,10 @@ class Fraction {
     }
 
     Fraction operator+(const Fraction& other) const {
-        return Fraction{this->nominator + other.nominator,
-                        this->denominator + other.denominator};
+        const T nominator = this->nominator * other.denominator +
+                            other.nominator * this->denominator;
+        const T denominator = this->denominator * other.denominator;
+        return Fraction{nominator, denominator};
     }
 
     Fraction operator-(const Fraction& other) const {
