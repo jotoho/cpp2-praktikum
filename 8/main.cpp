@@ -42,7 +42,9 @@ class TestFractions {
 
     static void testOperators(std::ostream& out) {
         out << "3/6 + 7/10 = " << (Fraction{3, 6} + Fraction{7, 10}) << '\n';
-        out << "9/4 + 13/7 = " << (Fraction{9, 4} + Fraction{13, 7}) << '\n';
+        out << "9/4 - 13/7 = " << (Fraction{9, 4} - Fraction{13, 7}) << '\n';
+        out << "10/5 * 25/3 = " << (Fraction{10, 5} * Fraction{25, 3}) << '\n';
+        out << "8/11 / 4/8 = " << (Fraction{8, 11} / Fraction{4, 8}) << '\n';
     }
 };
 
